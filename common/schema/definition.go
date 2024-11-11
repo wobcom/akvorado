@@ -522,7 +522,6 @@ END`,
 			},
 			{
 				Key:             ColumnNextHop,
-				Disabled:        true,
 				ParserType:      "ip",
 				ClickHouseType:  "LowCardinality(IPv6)",
 				ClickHouseCodec: "ZSTD(1)",
