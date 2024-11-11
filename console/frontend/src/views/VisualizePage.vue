@@ -183,6 +183,7 @@ const { data, execute, isFetching, aborted, abort, canAbort, error } = useFetch(
         lines: "line",
         grid: "line",
         sankey: "sankey",
+        heatmap: "line",
       };
       const url = endpoint[state.value.graphType];
       return {
