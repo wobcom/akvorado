@@ -72,6 +72,9 @@ type ResolutionConfiguration struct {
 	// TTL is how long to keep data for this resolution. A
 	// value of 0 means to never expire.
 	TTL time.Duration `validate:"isdefault|min=1h"`
+	// StoragePolicy defines which storage policy clickhouse
+	// will use for the table for this resolution
+	StoragePolicy string `validate:"emptyalphanumunderscore"`
 }
 
 // KafkaConfiguration describes Kafka-specific configuration
@@ -96,10 +99,10 @@ func DefaultConfiguration() Configuration {
 			GroupName: "clickhouse",
 		},
 		Resolutions: []ResolutionConfiguration{
-			{0, 15 * 24 * time.Hour},                   // 15 days
-			{time.Minute, 7 * 24 * time.Hour},          // 7 days
-			{5 * time.Minute, 3 * 30 * 24 * time.Hour}, // 90 days
-			{time.Hour, 12 * 30 * 24 * time.Hour},      // 1 year
+			{0, 15 * 24 * time.Hour, ""},                   // 15 days
+			{time.Minute, 7 * 24 * time.Hour, ""},          // 7 days
+			{5 * time.Minute, 3 * 30 * 24 * time.Hour, ""}, // 90 days
+			{time.Hour, 12 * 30 * 24 * time.Hour, ""},      // 1 year
 		},
 		MaxPartitions:         50,
 		NetworkSourcesTimeout: 10 * time.Second,
